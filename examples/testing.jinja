@@ -21,7 +21,12 @@
     {% for x in foobar %}
      {{ for}}
     {% endfor %}
-
+  {% endif %}
+  {#
+    line statements and comments are also supported:
+  #}
+  # if foo == baz:  ## another comment
     {{ inline_css('inline.css') }}
+  # endif
   </body>
 </html>

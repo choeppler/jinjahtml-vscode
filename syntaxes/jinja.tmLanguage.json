@@ -25,6 +25,16 @@
       "include": "#comments"
     },
     {
+      "begin": "##-?",
+      "end": "$",
+      "captures": [
+        {
+          "name": "entity.other.jinja.delimiter.comment"
+        }
+      ],
+      "name": "comment.line.jinja"
+    },
+    {
       "begin": "{{-?",
       "captures": [
         {
@@ -48,6 +58,21 @@
       ],
       "end": "-?%}",
       "name": "meta.scope.jinja.tag",
+      "patterns": [
+        {
+          "include": "#expression"
+        }
+      ]
+    },
+    {
+      "begin": "^\\s*#[-+]?",
+      "end": "(?=$|##-?)",
+      "captures": [
+        {
+          "name": "keyword.control.jinja.delimiter.line-statement"
+        }
+      ],
+      "name": "meta.scope.jinja.statement.line",
       "patterns": [
         {
           "include": "#expression"
@@ -130,7 +155,7 @@
               "name": "keyword.control.jinja"
             }
           },
-          "match": "(?<=\\{\\%-|\\{\\%)\\s*\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?!\\s*[,=])"
+          "match": "(?<=#|\\{\\%-|\\{\\%)\\s*\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?!\\s*[,=])"
         },
         {
           "match": "\\b(and|else|if|in|import|not|or|recursive|with(out)?\\s+context)\\b",
